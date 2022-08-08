@@ -1,7 +1,14 @@
 workflows:
     android-app:
         name: Android App
+        instance_type: linux
         scripts:
-            - ./gradlew bundleRelease
+            - name: Build Android APK
+            working_directory: android
+            script: ./gradlew assembleRelease
         artifacts:
-            - build/outputs/**/**/*.apk
+            - app/build/outputs/**/**/*.apk
+        publishing:
+            email:
+                recipients:
+                    - csaikumar501@gmail.com
